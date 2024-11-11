@@ -6,6 +6,7 @@ import (
 	"os"
 	"payment-gateway/db"
 	"payment-gateway/internal/api"
+	_ "payment-gateway/internal/services"
 )
 
 func main() {

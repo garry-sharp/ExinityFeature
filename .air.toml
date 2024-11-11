@@ -1,0 +1,19 @@
+# Config file for Air
+
+# Working directory
+root = "."
+tmp_dir = "tmp"
+
+[build]
+cmd = "$(cd cmd && go build -o ../tmp/main .)"
+bin = "tmp/main"
+# include_ext = ["go"]
+# exclude_dir = ["tmp", "vendor"]
+# exclude_file = ["*_test.go"]
+# delve = false
+
+[log]
+level = "info"
+
+# [watch]
+# full_reload = false

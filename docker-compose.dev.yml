@@ -1,0 +1,28 @@
+version: "3.7"
+services:
+  app:
+    build: 
+      dockerfile: DockerfileHotReload
+      context: .
+    container_name: payment_gateway_app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - kafka
+      - zookeeper
+      - postgres
+      - redis
+    volumes:
+      - .:/app
+    environment:
+      - DATABASE_URL=postgres://user:password@postgres:5432/payments?sslmode=disable
+      - KAFKA_BROKER_URL=kafka-like:9092
+      - DB_USER=user
+      - DB_PASSWORD=password
+      - DB_NAME=payments
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - AES_ENCRYPTION_CIPHER=0e2a2eaee2c6135346e52c5836e78dc8a26ff5f03da3179c59bd4e5c118c6b23
+    command: ["air"]
+    networks:
+      - kafka_network
